@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>判斷使用者的系統</title>
+</head>
+
+<body>
+</body>
+<script>
+//第一種方式
+var browser = {
+ versions: function() {
+  var u = navigator.userAgent;
+  var app = navigator.appVersion;
+  return {
+   trident: u.indexOf('Trident') > -1, //IE
+   presto: u.indexOf('Presto') > -1, //opera
+   webKit: u.indexOf('AppleWebKit') > -1, //apple、google
+   gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //Firefox
+   mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否為手機
+   ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios
+   android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android或uc瀏覽器
+   iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否為iPhone或著QQHD瀏覽器
+   iPad: u.indexOf('iPad') > -1, //是否iPad
+   webApp: u.indexOf('Safari') == -1
+  };
+ }(),
+ language: (navigator.browserLanguage || navigator.language).toLowerCase()
+}
+
+  document.writeln("語言版本: " + browser.language + " , ");
+  document.writeln(" 是否為手機: " + browser.versions.mobile + " , ");
+  document.writeln(" ios: " + browser.versions.ios + " , ");
+  document.writeln(" android: " + browser.versions.android + " , ");
+  document.writeln(" 是否為iPhone: " + browser.versions.iPhone + " , ");
+  document.writeln(" 是否iPad: " + browser.versions.iPad + " , ");
+  document.writeln(navigator.userAgent + " , ");
+
+if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
+ alert("ios");
+}
+else if (browser.versions.android) {
+ alert("android");
+}
+else{
+ alert("nothing");
+}
+
+
+//第二種方式
+if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+    alert("ios_2");
+} else if (/(Android)/i.test(navigator.userAgent)) {
+    alert("android_2");
+} else {
+    alert("nothing_2");
+};
+</script>
+
+</html>

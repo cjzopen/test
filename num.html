@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    list-style:none;
+    outline: 1px solid red;
+  }
+</style>
+<body>
+<div>10000</div>
+<div>500000</div>
+<div>500000000</div>
+<div>10000000000</div>
+	
+	<script src="js/jquery-1.12.0.min.js"></script>
+	<script>
+		$(function() {
+    function count($this){
+        var current = parseInt($this.html(), 1000);
+        $this.html(++current);
+        if(current !== $this.data('count')){
+            setTimeout(function(){count($this)}, 1);
+        }
+    }        
+  $("div").each(function() {
+      $(this).data('count', parseInt($(this).html(), 10));
+      $(this).html('0');
+      count($(this));
+  });
+});
+	</script>
+</body>
+</html>

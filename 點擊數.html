@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>點擊數?</title>
+</head>
+
+<body>
+</body>
+
+</html>
+<HTML>
+
+<BODY>
+    <IMG id="img1" SRC="0.jpg" onclick="count(this);" style="zoom:10%; cursor: hand">
+    <IMG id="img2" SRC="1.jpg" onclick="count(this);" style="zoom:10%; cursor: hand">
+    <IMG id="img3" SRC="2.jpg" onclick="count(this);" style="zoom:10%; cursor: hand">
+    <IMG id="img4" SRC="3.jpg" onclick="count(this);" style="zoom:10%; cursor: hand">
+    <DIV id="message"></DIV>
+    <SCRIPT LANGUAGE="JavaScript">
+    var http_request;
+
+    function count(img) {
+        //  var src=img.src.replace(/http:\/\//,'').replace(/\//g,"_") 
+        //  makeRequest("http://doong/count.asp?src="+src+"&t="+Date.parse(new Date())); 
+
+        var src = img.src.split("/");
+        makeRequest("http://doong/count.asp?src=" + src[src.length - 1] + "&t=" + Date.parse(new Date()));
+    }
+
+    function makeRequest(url) {
+        http_request = false;
+        if (window.XMLHttpRequest) { // Mozilla, Safari,... 
+            http_request = new XMLHttpRequest();
+            if (http_request.overrideMimeType) {
+                http_request.overrideMimeType('text/xml');
+            }
+        } else if (window.ActiveXObject) { // IE             
+            try {
+                http_request = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {}
+            }
+        }
+
+        if (!http_request) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+        http_request.onreadystatechange = alertContents;
+        http_request.open('GET', url, true);
+        http_request.send(null);
+    }
+
+    function alertContents() {
+        if (http_request.readyState == 4) {
+            if (http_request.status == 200) {
+                //顯示點擊次數 
+                document.getElementById("message").innerText = http_request.responseText;
+            } else {
+                alert('There was a problem with the request.');
+            }
+        }
+    }
+    </SCRIPT>
+</BODY>
+
+</HTML>

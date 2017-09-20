@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>收合效果</title>
+</head>
+<style>
+.header {
+    position: fixed;
+    top: 0px;
+    left: 9px;
+    right: 9px;
+    height: 50px;
+    border: 1px dotted blue;
+    background-color: rgba(125, 125, 125, 0.5);
+}
+
+.main {
+    margin-top: 60px;
+    border: 1px solid blue;
+    width: 25%;
+    height: 1500px;
+}
+
+.sidebar {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    top: 100px;
+    right: 50px;
+    border: 2px solid lightgray;
+    padding: 10px;
+}
+</style>
+
+<body>
+    <div class="header">The header or navigation elements go here...</div>
+    <div class="main">
+        <p>Some content...</p>
+        <p>Donec ipsum libero, pellentesque ut accumsan sit amet, porta vitae velit. Aenean id ante et ante congue interdum vitae ac nunc. Maecenas porta aliquam metus ac convallis. Morbi molestie posuere pulvinar. Curabitur non ligula ipsum, at laoreet ipsum. Aliquam nec dolor luctus massa eleifend interdum. Nunc sagittis, nulla eu hendrerit hendrerit, ante velit posuere turpis, in tincidunt odio magna vel neque. Sed lobortis neque eget tortor porta mattis. Vestibulum vulputate, nisi vel tempor tristique, nibh nisl posuere est, vitae ullamcorper ipsum nibh in ligula. Morbi in augue neque.</p>
+    </div>
+    <div class="sidebar">
+        <p>Scroll Offset: <b></b> <em></em>
+        </p>
+    </div>
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <script>
+    $(window).scroll({
+            previousTop: 0
+        },
+        function() {
+            var currentTop = $(window).scrollTop();
+            if (currentTop < this.previousTop) {
+                $(".sidebar em").text("Up");
+                $(".header").slideDown();
+            } else {
+                $(".sidebar em").text("Down");
+                $(".header").slideUp();
+            }
+            this.previousTop = currentTop;
+        });
+    </script>
+</body>
+
+</html>

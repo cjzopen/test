@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+.fl {
+    float: left;
+}
+
+.flex,
+.container {
+    display: -webkit-flex;
+}
+
+.flex>div:nth-child(2),
+.container>div:nth-child(2) {
+    white-space: nowrap;
+    /*-webkit-order: 2;*/
+    -webkit-flex: 0 1 auto;
+    /*important*/
+    text-overflow: ellipsis;
+    overflow: hidden;
+    min-width: 0;
+    /* new algorithm overrides the width calculation */
+}
+
+.flex>div:first-child,
+.container > div:first-child {
+    -webkit-flex: 1;
+    /*-webkit-order: 1;*/
+    background: red;
+    -webkit-flex: 1 0 auto;
+    max-width: 100px;
+    min-width: 100px;
+    /*important*/
+}
+
+.flex>div:nth-child(2):hover,
+.container > div:nth-child(2):hover {
+    white-space: normal;
+}
+</style>
+
+<body>
+    <div class="container">
+        <div>foo barfoo bar</div>
+        <div>foo bar</div>
+    </div>
+    <div class="container">
+        <div>foo bar</div>
+        <div>foo barfoo barfoo barfoo barfoo barfoo barfoo bar foo barfoo barfoo barfoo barfoo barfoo barfoo bar foo barfoo barfoo barfoo barfoo barfoo barfoo bar</div>
+    </div>
+    <div class="fl">
+        <div class="flex">
+            <div>d</div>
+            <div>pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp ppppppppppppppp</div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'pie chart'], 
+          ['AP',  2],
+          ['利率', 2],
+          ['貸款量', 7]
+        ]);
+
+        var options = {
+          title: '【MTD】業績', 
+          titleTextStyle:{           	
+          	// color: <string>,
+  			    // fontName: <string>,
+  			       fontSize: 18
+  		    },
+          // titlePosition: 'none',
+          legend: {position: 'bottom', textStyle: {color: '#333', fontSize: 16}},
+          // legend: {position: 'none'},
+          backgroundColor: '#666',
+          pieSliceBorderColor: '#666',
+          // pieHole: 0.3,
+          pieSliceText: 'label',
+          pieSliceTextStyle: {
+            color: 'black',
+          }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+
+      }
+    </script>
+  </head>
+  <style>
+
+  </style>
+  <body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <script>  
+    $(function(){
+      var title_chart=$("#piechart svg g").find('text').html();   
+
+     $("#piechart div div div svg g:nth-child(1)").html('<text text-anchor="start" x="400" y="141" font-family="Arial" font-size="18" font-weight="bold" stroke="none" stroke-width="0" fill="#000000">'+'</text><rect x="161" y="55" width="579" height="18" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect>');
+    })
+        
+    </script>
+  </body>
+</html>

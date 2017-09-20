@@ -1,0 +1,1 @@
+ga("send",{hitType:"event",eventCategory:"test",eventAction:"view",eventLabel:"官網",nonInteraction:true});
