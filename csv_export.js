@@ -43,7 +43,7 @@
       window.navigator.msSaveBlob(blob, filename);
 
     } else if (window.Blob && window.URL) {
-      // HTML5 Blob        
+      // HTML5 Blob
       var blob = new Blob(["\ufeff"+csv], {
         type: 'text/csv;charset=utf-8'
       });
@@ -77,4 +77,3 @@
     // If CSV, don't do event.preventDefault() or return false
     // We actually need this to be a typical hyperlink
   });
-});

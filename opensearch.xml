@@ -1,0 +1,8 @@
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+  <ShortName>Ares International Corp.</ShortName>
+  <Description>Search Ares International Corp.</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image width="32" height="32" type="image/x-icon">https://www.ares.com.tw/img/favicon.ico</Image>
+  <Url type="text/html" method="get" template="https://www.ares.com.tw/search/?cx=001413436045317332895:_8dhnmhf2qm&amp;q={searchTerms}&amp;ref=opensearch"/>
+  <moz:SearchForm>https://www.ares.com.tw/search/</moz:SearchForm>
+</OpenSearchDescription>
