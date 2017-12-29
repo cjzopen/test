@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+</head>
+<body>
+  <h1>html2canvas</h1>
+  <p>i dont know why useCORS is not working. <br>and its not support svg.</p>
+<div id="creat">click</div>
+<div class="myImg" style="position:relative;">
+    <!-- <img src=""> -->
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script>
+$("#creat").click(function(){
+  var viewWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  var viewHeight = $('html').height();
+  html2canvas($("body"),{ // $(".myImg")是你要复制生成canvas的区域，可以自己选
+    useCORS: true,
+    onrendered:function(canvas){
+      dataURL =canvas.toDataURL("image/png",0.5); //後面數字為解析度，default=1
+      $("body").append(canvas);
+      // console.log(dataURL);
+
+      //下载图片
+      $('#down_button').attr( 'href' ,  dataURL ) ;
+      $('#down_button').attr( 'download' , 'screenshop.png' ) ;
+    },
+    width:viewWidth,
+    height:viewHeight
+  })
+})
+</script>
+</body>
+</html>
