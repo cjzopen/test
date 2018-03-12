@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>yahooapi weather</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+$(function(){
+  var loc = 'Taipei';
+  let querie = 'https://query.yahooapis.com/v1/public/yql?q=select units,astronomy,atmosphere,wind,location,item from weather.forecast where woeid in (select woeid from geo.places(1) where text="'+ loc +'") and u="c"&format=json';
+  // 攝氏溫度 u="c"
+  $.getJSON(querie, function(data) {
+    console.log(data);
+    var channel = data.query.results.channel;
+    if(channel != null){}
+  })
+})
+</script>
+</body>
+</html>

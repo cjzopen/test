@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>取得使用者座標</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <link rel="shortcut icon" href="ico url">
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div>startLat: <span id="startLat"></span></div>
+<div>startLon: <span id="startLon"></span></div>
+<div>currentLat: <span id="currentLat"></span></div>
+<div>currentLon: <span id="currentLon"></span></div>
+<script>
+// check for Geolocation support
+if (navigator.geolocation) {
+  console.log('Geolocation is supported!');
+}
+else {
+  console.log('Geolocation is not supported for this Browser/OS version yet.');
+}
+window.onload = function() {
+  var startPos;
+  var geoOptions = {
+    maximumAge: 5 * 60 * 1000,
+    //使用 maximumAge 選用屬性以要求瀏覽器使用最近取得的地理位置結果。 如果使用者在資料阻止瀏覽器必須啟動其地理位置硬體介面 (例如 Wi-Fi 三角定位或 GPS) 之前已要求資料， 這種方式會回傳更快。
+    timeout: 10 * 1000,
+    //timeout
+    enableHighAccuracy: true,
+    //粗略位置
+  }
+  var geoSuccess = function(position) {
+    startPos = position;
+    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+  };
+  var geoError = function(position) {
+    console.log('Error occurred. Error code: ' + error.code);
+    // error.code can be:
+    //   0: unknown error
+    //   1: permission denied
+    //   2: position unavailable (error response from location provider)
+    //   3: timed out
+  };
+  navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
+  //如果要持續觀察使用者的位置變更 watchPosition：
+  var watchId = navigator.geolocation.watchPosition(function(position) { document.getElementById('currentLat').innerHTML = position.coords.latitude; document.getElementById('currentLon').innerHTML = position.coords.longitude; });
+  //停止持續觀察 clearWatch
+};
+</script>
+<script>
+if (window.DeviceOrientationEvent) {
+  window.addEventListener('deviceorientation', deviceOrientationHandler, false);
+}
+//裝置動作事件會以規律周期觸發， 並及時在當下傳回關於裝置的旋轉 (每秒 ° 次) 和加速度 (單位為 m/sec2) 的資料。 某些裝置沒有必要硬體， 可以排除重力的作用。
+//此事件會返回四個屬性、 accelerationIncludingGravity、 acceleration (排除重力的影響)、 rotationRate和interval。
+if (window.DeviceMotionEvent) {
+  window.addEventListener("devicemotion", deviceMotionHandler);
+  setTimeout(stopJump, 3*1000);
+}
+</script>
+</body>
+</html>
