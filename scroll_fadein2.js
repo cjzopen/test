@@ -28,3 +28,17 @@ $(window).scroll(function() {
         }
     });
 });
+
+
+// =======================
+
+$(window).scroll(function() {
+  var windowH = $(window).height(),
+    scrollY = $(window).scrollTop();
+  element.each(function() {
+    var elPosition = $(this).offset().top;
+    if (scrollY > elPosition - windowH) {
+      //do what
+    }
+  });
+});

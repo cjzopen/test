@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>border animation</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+</head>
+<body>
+
+<style>
+*{
+  box-sizing:border-box;
+  padding: 0;
+  margin: 0;
+  text-decoration:none;
+}
+nav {
+  padding:15px;
+}
+nav ul{
+  float: right;
+  margin: 0;
+  list-style: none;
+  z-index: 9999;
+  position: relative;
+}
+li{
+  display: inline-block;
+  padding: 0 20px;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+  line-height: 30px;
+}
+li:before,li:after{
+  content: '';
+  display: inline-block;
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color: #fad048;
+  transition: transform .1s;
+  transform: scale3d(1,0,1);
+}
+li:before{
+  bottom: 0;
+  left: 0;
+  transition-delay: .3s;
+  transform-origin: 50% 100%;
+}
+li:after{
+  top: 0;
+  right: 0;
+  transition-delay: .1s;
+  transform-origin: 50% 0;
+}
+li a:before,li a:after{
+  content: '';
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #fad048;
+  transition: transform .1s;
+  transform: scale3d(0,1,1);
+  transform-origin: 0 50%;
+}
+li a:before{
+  top: 0;
+  left: 0;
+  transform-origin: 0 50%;
+}
+li a:after{
+  right: 0;
+  bottom: 0;
+  transition-delay: .2s;
+  transform-origin: 100% 50%;
+}
+li:hover:before,li:hover:after,li:hover a:before,li:hover a:after{
+  transform: scale3d(1,1,1);
+}
+.ribbon-03 {
+  position: relative;
+  top: -20px;
+}
+.ribbon-03:before {
+  content:'';
+  display:block;
+  width: 40%;
+  height: 20px;
+  background-color: #fad048;
+}
+.ribbon-03:after {
+  content:'';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px 25px 0 0;
+  border-color: #e0af32 transparent transparent transparent;
+  top: 20px;
+  left: 40%;
+  margin-left: -25px;
+  z-index: 1;
+}
+.ribbon-03 .part {
+  width: 60%;
+  height: 20px;
+  box-sizing: content-box;
+  padding-left: 25px;
+  background-color: #fad048;
+  float: right;
+}
+.ribbon-03 .part:after{
+  content:'';
+  width:0;
+  height:0;
+  clear:both;
+}
+</style>
+<nav>
+  <ul>
+    <li><a href="">test</a></li>
+    <li><a href="">ohmy</a></li>
+  </ul>
+</nav>
+<div style="clear: both"></div>
+<p style="margin:20px">source http://www.taxinetcab.com/</p>
+<div class="ribbon-03">
+  <div class="part frontal"></div>
+</div>
+</body>
+</html>
