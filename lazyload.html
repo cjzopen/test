@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>lazyload in window</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<style>
+img{
+  max-width:100%;
+}
+.lazyload{
+  -webkit-filter:blur(16px);
+  filter:blur(16px);
+  -webkit-transition : -webkit-filter .4s linear;
+  transition : filter .4s linear;
+}
+.lazyloaded{
+  -webkit-filter:blur(0);
+  filter:blur(0);
+  -webkit-transition : -webkit-filter .4s linear;
+  transition : filter .4s linear;
+}
+</style>
+<body>
+<img width="1200" class="lazyload" src="https://picsum.photos/200/50?image=0" data-src="https://picsum.photos/1200/300?image=0" alt=""><br>
+<img width="1200" class="lazyload" src="https://picsum.photos/200/50?image=0" data-src="https://picsum.photos/1200/300?image=1" alt=""><br>
+<img width="1200" class="lazyload" src="https://picsum.photos/200/50?image=0" data-src="https://picsum.photos/1200/300?image=2" alt=""><br>
+<img width="1200" class="lazyload" src="https://picsum.photos/200/50?image=0" data-src="https://picsum.photos/1200/300?image=3" alt=""><br>
+<img width="1200" class="lazyload" src="https://picsum.photos/200/50?image=0" data-src="https://picsum.photos/1200/300?image=4" alt=""><br>
+<img width="1200" class="lazyload" src="https://picsum.photos/200/50?image=0" data-src="https://picsum.photos/1200/300?image=5" alt=""><br>
+<img width="1200" class="lazyload" src="https://picsum.photos/200/50?image=0" data-src="https://picsum.photos/1200/300?image=6" alt=""><br>
+<img width="1200" class="lazyload" src="https://picsum.photos/200/50?image=0" data-src="https://picsum.photos/1200/300?image=7" alt=""><br>
+<img width="1200" class="lazyload" src="https://picsum.photos/200/50?image=0" data-src="https://picsum.photos/1200/300?image=8" alt=""><br>
+<img width="1200" class="lazyload" src="https://picsum.photos/200/50?image=0" data-src="https://picsum.photos/1200/300?image=9" alt=""><br>
+<img width="1200" class="lazyload" src="https://picsum.photos/200/50?image=0" data-src="https://picsum.photos/1200/300?image=10" alt=""><br>
+<script>
+  //according to developers.google.com
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyloadImages = [].slice.call(document.querySelectorAll("img.lazyload"));
+
+  if ("IntersectionObserver" in window) {
+    var lazyloadImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var lazyloadImage = entry.target;
+          lazyloadImage.src = lazyloadImage.dataset.src;
+          if(lazyloadImage.dataset.srcset){
+            lazyloadImage.srcset = lazyloadImage.dataset.srcset;
+          }
+          lazyloadImage.classList.remove("lazyload");
+          lazyloadImage.classList.add('lazyloaded');
+          lazyloadImageObserver.unobserve(lazyloadImage);
+        }
+      });
+    });
+
+    lazyloadImages.forEach(function(lazyloadImage) {
+      lazyloadImageObserver.observe(lazyloadImage);
+    });
+  } else {
+    //not support
+    if( $('.lazyload').length ){
+      $.getScript("https://afarkas.github.io/lazysizes/lazysizes.min.js").done(function(){
+        // ...
+      });
+    }
+  }
+});
+</script>
+</body>
+</html>

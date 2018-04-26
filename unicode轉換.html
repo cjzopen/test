@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<style>
+  p{
+    white-space:pre-wrap;
+    word-break:break-all;
+  }
+</style>
+<body>
+<p id="s">天天一天是一個之間不好流程幾乎授權，瞭解促銷微軟強調裝修，意識有點工具一定從此你不幹部突破校長可是遇到保障以為轎車交，全身廣場說法臉上自治，不在我們協會實際上也能固定人們露出接，持續適用於審批創造和平服飾天津他們怎麼會音樂生產每天國內。</p>
+轉成unicode：
+<p id="r"></p>
+轉回來：
+<p id="b"></p>
+<script>
+var k = '';
+let s = document.getElementById('s').innerHTML;
+for (let ch of s) {
+  k = k+'\\u'+ch.codePointAt(0).toString(16);
+  document.getElementById('r').innerHTML=k;
+}
+
+// console.log(unescape( decodeURIComponent( k ) ));
+document.getElementById('b').innerHTML= unescape(k.replace(/\\u/g, '%u'));
+
+// =========================================
+
+
+// let text = String.fromCodePoint(0x20BB7);
+// for (let i of text) {
+//   console.log(i);
+// }
+</script>
+</body>
+</html>
