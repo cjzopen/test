@@ -13,9 +13,12 @@ div{
   background-image:url(https://picsum.photos/1920/600/?random);
   background-size:cover;
   height:600px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  /*flex let background-clip not working in ie and edge*/
+  /*display:flex;*/
+  /*justify-content:center;*/
+  /*align-items:center;*/
+  line-height:600px;
+  text-align: center;
   font-size:20vw;
   font-weight:700;
   background-clip: text;
