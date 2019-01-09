@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+</head>
+<body>
+<a href="https://segmentfault.com/a/1190000017781605">if you want to add axios, check here</a>
+<form id="" name="" enctype="multipart/form-data" method="POST">
+  <input type="file" multiple id="up-img" accept="image/*" />
+</form>
+<div></div>
+<script>
+let inp = document.querySelector('#up-img')
+inp.onchange = function(e) {
+  let fileList = document.querySelector('#up-img').files
+  console.log(fileList) //files
+
+  for(let i = 0;i < fileList.length;i++){
+    let file = fileList[i];
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file); //读取图片
+    fileReader.addEventListener('load', function() {
+      // 读取完成
+      let res = fileReader.result;
+      console.log(res);
+      // res是base64格式的图片
+      var d1 = document.querySelector('div');
+      d1.insertAdjacentHTML('beforeend', '<figure><img width="80" src="'+res+'" alt=""><figcaption>'+file.name+'</figcaption></figure>');
+    })
+  }
+}
+
+</script>
+</body>
+</html>
